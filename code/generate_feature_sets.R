@@ -2,14 +2,14 @@
 library(tidyverse)
 
 #GWAS RESULTS ----
-full_hits_prime <- read_csv("../../2023_01_16_combined_geno_summary/data/full_hits.csv")
+full_hits_prime <- read_csv("../../2023_02_07_combined_geno_summary/data/full_hits.csv")
 
 treewas_tests <- unique(full_hits_prime$treewas.test)
 hogwash_tests <- unique(full_hits_prime$hogwash.test)[!is.na(unique(full_hits_prime$hogwash.test))]
 ml_tests <- unique(full_hits_prime$ml.test)
 genos <- unique(full_hits_prime$geno)
-cyt_groups <- unique(full_hits_prime$group)
-cytokines <- unique(full_hits_prime$pheno)
+pheno_groups <- unique(full_hits_prime$group)
+phenos <- unique(full_hits_prime$pheno)
 
 full_hits_bool <- full_hits_prime %>%
   select(pheno,
@@ -95,7 +95,7 @@ write_delim(geno_df_sub,
             "data/combined_mat.tsv")
 
 #PHENOTYPE ----
-pheno_dirs <- list.files("../../2023_01_04_snakemake_sift_core_analysis/cytokine_core_sift/data/pheno",
+pheno_dirs <- list.files("../../2023_01_05_snakemake_sift_core_analysis/severity_core_sift/data/pheno",
                          full.names = TRUE)
 pheno_path <- unlist(lapply(pheno_dirs, function(x){list.files(x,
                                                                pattern = "*.tsv",
@@ -129,6 +129,8 @@ for(i in 2:length(pheno_path)){
                      by = "genome_id")
   
 }
+
+colnames(pheno)[grep("q2_3", colnames(pheno))] <- gsub("q2_3", "q23", colnames(pheno)[grep("q2_3", colnames(pheno))])
 
 write_csv(pheno,
           "data/pheno_full.csv")
