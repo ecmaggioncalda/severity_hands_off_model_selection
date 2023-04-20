@@ -49,7 +49,7 @@ checkpoint prepro_overall:
         "log/{phenotype}.prepro_overall.txt"
     resources:
         ncores = ncores,
-        mem_mb = get_mem_mb_lowest
+        mem_mb = get_mem_mb_med
     benchmark:
         "benchmarks/{phenotype}.prepro_overall.txt"
     script:
