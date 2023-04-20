@@ -132,5 +132,9 @@ for(i in 2:length(pheno_path)){
 
 colnames(pheno)[grep("q2_3", colnames(pheno))] <- gsub("q2_3", "q23", colnames(pheno)[grep("q2_3", colnames(pheno))])
 
-write_csv(pheno,
+pheno_chr <- pheno  %>%
+  mutate(across(!genome_id,  ~replace(.x, .x == 0, "not_severe")),
+         across(!genome_id,  ~replace(.x, .x == 1, "severe")))
+
+write_csv(pheno_chr,
           "data/pheno_full.csv")
