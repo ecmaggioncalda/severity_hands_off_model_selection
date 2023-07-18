@@ -13,9 +13,9 @@ alpha_var: 0.10 #either "default" or a number indicating the number to use as th
 lambda_var: alternate #either "default" or "alternate", with "alternate" specifying the range of lamda values in the ml.R script
 phenotype: #list defining the phenotype(s) of interest from the metadata file
  - IDSA_severe_mod.full
- - IDSA_severe_mod.q1
- - IDSA_severe_mod.q23
- - IDSA_severe_mod.q4
- - IDSA_severe_mod.t1
- - IDSA_severe_mod.t2
- - IDSA_severe_mod.t3
+ # - IDSA_severe_mod.q1
+ # - IDSA_severe_mod.q23
+ # - IDSA_severe_mod.q4
+ # - IDSA_severe_mod.t1
+ # - IDSA_severe_mod.t2
+ # - IDSA_severe_mod.t3
